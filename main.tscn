@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://3fa6y5am1553"]
+[gd_scene load_steps=4 format=3 uid="uid://3fa6y5am1553"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_31dcs"]
 [ext_resource type="Script" path="res://llama.gd" id="1_va7kq"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxcje"]
+bg_color = Color(0.223103, 0.223103, 0.223103, 1)
+
 [node name="Main" type="Node"]
+script = ExtResource("1_31dcs")
 
 [node name="Llama" type="GDLlama" parent="."]
 model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
@@ -17,23 +22,28 @@ custom_minimum_size = Vector2(1000, 300)
 offset_right = 8.0
 offset_bottom = 8.0
 theme_override_font_sizes/font_size = 32
-text = "Godot is a"
+text = "Godot engine is a"
 placeholder_text = "Prompt"
 
-[node name="GeneratedText" type="TextEdit" parent="."]
-custom_minimum_size = Vector2(1600, 500)
-offset_top = 400.0
-offset_right = 1600.0
-offset_bottom = 900.0
-theme_override_colors/font_readonly_color = Color(0.843184, 0.843184, 0.843184, 1)
-theme_override_font_sizes/font_size = 32
-placeholder_text = "Generated Text"
-editable = false
-
-[node name="Button" type="Button" parent="."]
+[node name="GenerateButton" type="Button" parent="."]
 offset_left = 1068.0
 offset_top = 40.0
 offset_right = 1297.0
 offset_bottom = 135.0
 theme_override_font_sizes/font_size = 32
 text = "Generate"
+
+[node name="GeneratedText" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(1600, 500)
+offset_top = 400.0
+offset_right = 1600.0
+offset_bottom = 900.0
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_jxcje")
+text = "Generated Text"
+scroll_following = true
+selection_enabled = true
+
+[connection signal="generate_text_updated" from="Llama" to="." method="_on_llama_generate_text_updated"]
+[connection signal="pressed" from="GenerateButton" to="." method="_on_generate_button_pressed"]

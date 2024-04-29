@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://llama.gd" id="1_va7kq"]
 
-[node name="main" type="Node"]
+[node name="Main" type="Node"]
 
-[node name="llama" type="GDLlama" parent="."]
+[node name="Llama" type="GDLlama" parent="."]
 model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
 context_size = 2048
 n_gpu_layer = 4
@@ -12,7 +12,7 @@ escape = true
 n_predict = 512
 script = ExtResource("1_va7kq")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="Prompt" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(1000, 300)
 offset_right = 8.0
 offset_bottom = 8.0

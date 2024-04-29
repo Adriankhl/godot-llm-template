@@ -1,5 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
 
-models/
 addons/
+
+# Ignore both symlink and real directory
+models
+models/

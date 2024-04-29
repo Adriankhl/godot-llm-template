@@ -19,3 +19,21 @@ offset_bottom = 8.0
 theme_override_font_sizes/font_size = 32
 text = "Godot is a"
 placeholder_text = "Prompt"
+
+[node name="GeneratedText" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(1600, 500)
+offset_top = 400.0
+offset_right = 1600.0
+offset_bottom = 900.0
+theme_override_colors/font_readonly_color = Color(0.843184, 0.843184, 0.843184, 1)
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Generated Text"
+editable = false
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1068.0
+offset_top = 40.0
+offset_right = 1297.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 32
+text = "Generate"

@@ -1,0 +1,1 @@
+# Godot LLM template

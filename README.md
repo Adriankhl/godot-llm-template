@@ -1,6 +1,8 @@
 # Godot LLM template
 A demo to show how to use the [godot-llm](https://github.com/Adriankhl/godot-llm) addon
 
+![](./media/demo.gif)
+
 # How to use
 1. Clone this project: `git clone https://github.com/Adriankhl/godot-llm-template.git`
 2. Download the addon from [godot-llm](https://github.com/Adriankhl/godot-llm) and place it to the `addons` folder

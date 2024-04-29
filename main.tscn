@@ -45,5 +45,15 @@ text = "Generated Text"
 scroll_following = true
 selection_enabled = true
 
+[node name="StopGenerateButton" type="Button" parent="."]
+offset_left = 1354.0
+offset_top = 40.0
+offset_right = 1583.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 32
+text = "Stop
+"
+
 [connection signal="generate_text_updated" from="Llama" to="." method="_on_llama_generate_text_updated"]
 [connection signal="pressed" from="GenerateButton" to="." method="_on_generate_button_pressed"]
+[connection signal="pressed" from="StopGenerateButton" to="." method="_on_stop_generate_button_pressed"]

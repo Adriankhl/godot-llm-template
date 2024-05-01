@@ -47,5 +47,5 @@ func _on_option_button_item_selected(index):
 			$Llama.instruct = false
 		1:
 			$GenerateButton.text = "Start"
-			$Llama.instructs = true
+			$Llama.instruct = true
 	$Prompt.clear()

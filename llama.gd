@@ -7,6 +7,9 @@ var thread: Thread = Thread.new()
 func _ready():
 	## thread becomes inactive after this calls
 	thread.start(func(): return)
+	if (OS.get_name() == "Android"):
+		OS.request_permissions()
+		model_path = OS.get_system_dir(0) + "/" + "models/current.gguf"
 
 
 func _thread_generate_text(prompt: String):

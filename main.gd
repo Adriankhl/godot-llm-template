@@ -2,7 +2,34 @@ extends Node
 
 var default_prompt = "Godot Engine is a"
 
+var default_prompt_json = "Main character in a magic world: "
+
 var default_interactive_text = "User: Hi\nAI: Hello. I am an AI chatbot. Would you like to talk?\nUser: Sure!\nAI: What would you like to talk about?\nUser:"
+
+var _person_schema = {
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"minLength": 3,
+			"maxLength": 20,
+		},
+		"birthday": {
+			"type": "string",
+			"format": "date"
+		},
+		"weapon": {
+			 "enum": ["sword", "bow", "wand"],
+		},
+		"description": {
+			"type": "string",
+			"minLength": 10,
+		},
+	},
+	"required": ["name", "birthday", "description"]
+}
+
+var person_schema: String = JSON.stringify(_person_schema)
 
 
 func _ready():
@@ -20,8 +47,12 @@ func _process(_delta):
 func _on_generate_button_pressed():
 	$GenerateButton.disabled = true
 	$GeneratedText.clear()
-	$Llama.run_generate_text($Prompt.text)
-	if ($OptionButton.selected != 0):
+	if ($InteractOption.selected == 0 && $SchemaOption.selected == 1):
+		$Llama.run_generate_text($Prompt.text, "", person_schema)
+	else:
+		$Llama.run_generate_text($Prompt.text)
+
+	if ($InteractOption.selected != 0):
 		$Prompt.clear()
 
 
@@ -32,7 +63,7 @@ func _on_llama_generate_text_updated(new_text):
 func _on_continue_button_pressed():
 	$ContinueButton.disabled = true
 	if ($Prompt.text != ""):
-		match $OptionButton.selected:
+		match $InteractOption.selected:
 			1:
 				$GeneratedText.add_text("\n\nPrompt: ")
 				$GeneratedText.add_text($Prompt.text)
@@ -51,7 +82,7 @@ func _on_llama_input_wait_started():
 	$ContinueButton.disabled = false
 
 
-func _on_option_button_item_selected(index):
+func _on_interact_option_item_selected(index):
 	match index:
 		0:
 			$GenerateButton.text = "Generate"
@@ -59,13 +90,19 @@ func _on_option_button_item_selected(index):
 			$Llama.interactive = false
 			$Llama.reverse_prompt = ""
 			$Llama.input_prefix = ""
-			$Prompt.text = default_prompt
+			$SchemaOption.disabled = false
+			match index:
+				0:
+					$Prompt.text = default_prompt
+				1:
+					$Prompt.text = default_prompt_json
 		1:
 			$GenerateButton.text = "Start"
 			$Llama.instruct = true
 			$Llama.interactive = false
 			$Llama.reverse_prompt = ""
 			$Llama.input_prefix = ""
+			$SchemaOption.disabled = true
 			$Prompt.clear()
 		2:
 			$GenerateButton.text = "Start"
@@ -73,4 +110,13 @@ func _on_option_button_item_selected(index):
 			$Llama.interactive = true
 			$Llama.reverse_prompt = "User:"
 			$Llama.input_prefix = " "
-			$Prompt.text = default_interactive_text
+			$SchemaOption.disabled = true
+			$Prompt.text = default_interactive_text 
+
+
+func _on_schema_option_item_selected(index):
+	match index:
+		0:
+			$Prompt.text = default_prompt
+		1:
+			$Prompt.text = default_prompt_json

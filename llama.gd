@@ -33,6 +33,9 @@ func run_generate_text(prompt: String, grammar: String = "", json_scheme: String
 		thread = Thread.new()
 		thread.start(_thread_generate_text.bind(prompt, grammar, json_scheme))
 
+
 ## Always cleanup the thread
 func _exit_tree():
+	## Stop the generation to avoid the thread getting stuck, e.g., keep waiting for user input
+	stop_generate_text()
 	thread.wait_to_finish()

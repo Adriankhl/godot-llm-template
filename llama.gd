@@ -17,9 +17,29 @@ func _thread_generate_text(prompt: String, grammar: String, json_scheme: String)
 	if (!grammar.is_empty()):
 		full_generated_text = generate_text_grammar(prompt, grammar)
 	elif (!json_scheme.is_empty()):
-		full_generated_text = generate_text_json(prompt, json_scheme)
+		var json_string = generate_text_json(prompt, json_scheme)
+
+		## An example to show how to extract the generated json substring
+		## Be aware that this doesn't work if the input prompt contains curly brackets
+		json_string = json_string.right(-json_string.find("{"))
+		json_string = json_string.left(json_string.rfind("}") + 1)
+		print("Json string:")
+		print(json_string)
+
+		# Turn the json into a dictionary
+		var dict: Dictionary = {}
+		var json = JSON.new()
+		var error = json.parse(json_string)
+		if (error == OK):
+			dict = json.data
+
+		print("Json keys: ")
+		print(dict.keys())
+		print("Json values: ")
+		print(dict.values())
 	else:
 		full_generated_text = generate_text(prompt)
+	print("Full generated text:")
 	print(full_generated_text)
 
 

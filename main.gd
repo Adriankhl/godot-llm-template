@@ -26,7 +26,7 @@ var _person_schema = {
 			"minLength": 10,
 		},
 	},
-	"required": ["name", "birthday", "description"]
+	"required": ["name", "birthday", "weapon", "description"]
 }
 
 var person_schema: String = JSON.stringify(_person_schema)
@@ -46,7 +46,7 @@ func _process(_delta):
 
 func _on_generate_button_pressed():
 	$GenerateButton.disabled = true
-	$GeneratedText.clear()
+	$GeneratedText.text = ""
 	if ($InteractOption.selected == 0 && $SchemaOption.selected == 1):
 		$Llama.run_generate_text($Prompt.text, "", person_schema)
 	else:
@@ -57,7 +57,7 @@ func _on_generate_button_pressed():
 
 
 func _on_llama_generate_text_updated(new_text):
-	$GeneratedText.add_text(new_text)
+	$GeneratedText.text += new_text
 
 
 func _on_continue_button_pressed():
@@ -65,11 +65,11 @@ func _on_continue_button_pressed():
 	if ($Prompt.text != ""):
 		match $InteractOption.selected:
 			1:
-				$GeneratedText.add_text("\n\nPrompt: ")
-				$GeneratedText.add_text($Prompt.text)
-				$GeneratedText.add_text("\n\nAnswer: ")
+				$GeneratedText.text += "\n\nPrompt: "
+				$GeneratedText.text += $Prompt.text
+				$GeneratedText.text += "\n\nAnswer: "
 			2:
-				$GeneratedText.add_text($Llama.input_prefix + $Prompt.text)
+				$GeneratedText.text += $Llama.input_prefix + $Prompt.text
 	$Llama.input_text($Prompt.text)
 	$Prompt.clear()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://3fa6y5am1553"]
+[gd_scene load_steps=5 format=3 uid="uid://3fa6y5am1553"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_31dcs"]
 [ext_resource type="Script" path="res://llama.gd" id="1_va7kq"]
@@ -6,14 +6,16 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxcje"]
 bg_color = Color(0.223103, 0.223103, 0.223103, 1)
 
+[sub_resource type="Theme" id="Theme_xu5is"]
+default_font_size = 32
+
 [node name="Main" type="Node"]
 script = ExtResource("1_31dcs")
 
 [node name="Llama" type="GDLlama" parent="."]
-model_path = "models/tinydolphin-2.8-1.1b.Q2_K.gguf"
-n_gpu_layer = 4
-escape = true
-n_predict = 200
+model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
+n_predict = 256
+n_keep = 128
 script = ExtResource("1_va7kq")
 
 [node name="Prompt" type="TextEdit" parent="."]
@@ -67,6 +69,7 @@ offset_left = 1363.0
 offset_top = 191.0
 offset_right = 1578.0
 offset_bottom = 250.0
+theme = SubResource("Theme_xu5is")
 theme_override_font_sizes/font_size = 32
 item_count = 2
 selected = 0

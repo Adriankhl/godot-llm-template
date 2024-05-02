@@ -9,7 +9,7 @@ func _ready():
 	thread.start(func(): return)
 	if (OS.get_name() == "Android"):
 		OS.request_permissions()
-		model_path = OS.get_system_dir(0) + "/" + "models/current.gguf"
+		model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/current.gguf"
 
 
 func _thread_generate_text(prompt: String):

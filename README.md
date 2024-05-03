@@ -8,6 +8,7 @@ A demo to show how to use the [godot-llm](https://github.com/Adriankhl/godot-llm
 2. Download the addon from [godot-llm](https://github.com/Adriankhl/godot-llm) and place it to the `addons` folder, or get `Godot LLM` directly from the godot asset library
 3. Create a `models` folder, download [Meta-Llama-3-8B-Instruct-Q5_K_M.gguf](https://huggingface.co/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF/tree/main) and place it in `models`
 4. Run the project with Godot
+5. If you see `model not found` error, you may need to open the `Llama` node with the inspector and select the `model_path`
 
 Folder and file structure:
 ```

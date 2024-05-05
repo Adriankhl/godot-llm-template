@@ -4,11 +4,12 @@ A demo to show how to use the [godot-llm](https://github.com/Adriankhl/godot-llm
 ![](./media/demo.gif)
 
 # How to use
+You may simply download the Android apk in the release page to try it out for Android devices.
+
 1. Clone this project: `git clone https://github.com/Adriankhl/godot-llm-template.git`
 2. Download the addon from [godot-llm](https://github.com/Adriankhl/godot-llm) and place it to the `addons` folder, or get `Godot LLM` directly from the godot asset library
-3. Create a `models` folder, download [Meta-Llama-3-8B-Instruct-Q5_K_M.gguf](https://huggingface.co/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF/tree/main) and place it in `models`
-4. Run the project with Godot
-5. If you see `model not found` error, you may need to open the `Llama` node with the inspector and select the `model_path`
+3. Download a model, recommended: [Meta-Llama-3-8B-Instruct-Q5_K_M.gguf](https://huggingface.co/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF/tree/main) or [Phi-3-mini-4k-instruct-Q2_K.gguf](https://huggingface.co/bartowski/Phi-3-mini-4k-instruct-GGUF/tree/main) for low-end devices such as Android phone
+4. Run the project with Godot or export an Android apk (requires the `Manage External Storage` permission)
 
 Folder and file structure:
 ```
@@ -31,13 +32,13 @@ Folder and file structure:
 ├── main.tscn
 ├── media
 │   └── demo.gif
-├── models
-│   └── Meta-Llama-3-8B-Instruct.Q5_K_M.gguf
 ├── project.godot
 └── README.md
 ```
 
-Once you open the application, you will see there are 3 generation mode: `Simple`, `Instruct`, and `Interactive`. 
+Open the application, click `model` and choose the downloaded GGUF file.
+
+You will see there are 3 generation mode: `Simple`, `Instruct`, and `Interactive`. 
 
 # `Simple` mode
 Just edit the prompt and click `Generate`.

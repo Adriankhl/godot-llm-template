@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://3fa6y5am1553"]
+[gd_scene load_steps=7 format=3 uid="uid://3fa6y5am1553"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_31dcs"]
 [ext_resource type="Script" path="res://llama.gd" id="1_va7kq"]
@@ -10,6 +10,9 @@ bg_color = Color(0.223103, 0.223103, 0.223103, 1)
 default_font_size = 32
 
 [sub_resource type="Theme" id="Theme_taf62"]
+default_font_size = 32
+
+[sub_resource type="Theme" id="Theme_pkcjd"]
 default_font_size = 32
 
 [node name="Main" type="Node"]
@@ -96,6 +99,28 @@ popup/item_0/id = 0
 popup/item_1/text = "Person"
 popup/item_1/id = 1
 
+[node name="ModelButton" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 338.0
+offset_right = 73.0
+offset_bottom = 369.0
+text = "Model"
+
+[node name="ModelChooser" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(671, 600)
+theme = SubResource("Theme_pkcjd")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="ModelPathLabel" type="Label" parent="."]
+offset_left = 84.0
+offset_top = 340.0
+offset_right = 124.0
+offset_bottom = 363.0
+
 [connection signal="generate_text_updated" from="Llama" to="." method="_on_llama_generate_text_updated"]
 [connection signal="input_wait_started" from="Llama" to="." method="_on_llama_input_wait_started"]
 [connection signal="pressed" from="GenerateButton" to="." method="_on_generate_button_pressed"]
@@ -103,3 +128,6 @@ popup/item_1/id = 1
 [connection signal="pressed" from="StopGenerateButton" to="." method="_on_stop_generate_button_pressed"]
 [connection signal="item_selected" from="InteractOption" to="." method="_on_interact_option_item_selected"]
 [connection signal="item_selected" from="SchemaOption" to="." method="_on_schema_option_item_selected"]
+[connection signal="pressed" from="ModelButton" to="." method="_on_model_button_pressed"]
+[connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
+[connection signal="file_selected" from="ModelChooser" to="Llama" method="_on_model_chooser_file_selected"]

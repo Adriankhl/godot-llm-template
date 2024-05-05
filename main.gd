@@ -37,6 +37,7 @@ func _ready():
 	$GenerateButton.disabled = $Llama.thread.is_alive()
 	$ContinueButton.disabled = true
 	$Prompt.text = default_prompt
+	$ModelPathLabel.text = $Llama.model_path
 
 
 func _process(_delta):
@@ -120,3 +121,14 @@ func _on_schema_option_item_selected(index):
 			$Prompt.text = default_prompt
 		1:
 			$Prompt.text = default_prompt_json
+
+
+func _on_model_button_pressed():
+	if (OS.get_name() == "Android"):
+		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+	$ModelChooser.popup()
+
+
+func _on_model_chooser_file_selected(path):
+	$Llama.model_path = path
+	$ModelPathLabel.text = $Llama.model_path

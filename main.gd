@@ -33,8 +33,12 @@ var person_schema: String = JSON.stringify(_person_schema)
 
 
 func _ready():
+
+	if (OS.get_name() == "Android"):
+		OS.request_permissions()
+		$Llama.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/current.gguf"
 	## Disable the generate button while the thread is running
-	$GenerateButton.disabled = $Llama.thread.is_alive()
+	$GenerateButton.disabled = $Llama.is_running()
 	$ContinueButton.disabled = true
 	$Prompt.text = default_prompt
 	$ModelPathLabel.text = $Llama.model_path
@@ -42,16 +46,16 @@ func _ready():
 
 func _process(_delta):
 	## Disable the generate button while the thread is running
-	$GenerateButton.disabled = $Llama.thread.is_alive()
+	$GenerateButton.disabled = $Llama.is_running()
 
 
 func _on_generate_button_pressed():
 	$GenerateButton.disabled = true
 	$GeneratedText.text = ""
-	if ($InteractOption.selected == 0 && $SchemaOption.selected == 1):
+	if ($SchemaOption.selected == 1):
 		$Llama.run_generate_text($Prompt.text, "", person_schema)
 	else:
-		$Llama.run_generate_text($Prompt.text)
+		$Llama.run_generate_text($Prompt.text, "", "")
 
 	if ($InteractOption.selected != 0):
 		$Prompt.clear()
@@ -91,7 +95,6 @@ func _on_interact_option_item_selected(index):
 			$Llama.interactive = false
 			$Llama.reverse_prompt = ""
 			$Llama.input_prefix = ""
-			$SchemaOption.disabled = false
 			match index:
 				0:
 					$Prompt.text = default_prompt
@@ -103,7 +106,6 @@ func _on_interact_option_item_selected(index):
 			$Llama.interactive = false
 			$Llama.reverse_prompt = ""
 			$Llama.input_prefix = ""
-			$SchemaOption.disabled = true
 			$Prompt.clear()
 		2:
 			$GenerateButton.text = "Start"
@@ -111,7 +113,6 @@ func _on_interact_option_item_selected(index):
 			$Llama.interactive = true
 			$Llama.reverse_prompt = "User:"
 			$Llama.input_prefix = " "
-			$SchemaOption.disabled = true
 			$Prompt.text = default_interactive_text 
 
 

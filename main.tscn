@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://3fa6y5am1553"]
+[gd_scene load_steps=6 format=3 uid="uid://3fa6y5am1553"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_31dcs"]
-[ext_resource type="Script" path="res://llama.gd" id="1_va7kq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxcje"]
 bg_color = Color(0.223103, 0.223103, 0.223103, 1)
@@ -23,7 +22,6 @@ model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
 n_predict = 256
 n_keep = 128
 escape = true
-script = ExtResource("1_va7kq")
 
 [node name="Prompt" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(1000, 300)

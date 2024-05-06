@@ -119,6 +119,7 @@ offset_top = 340.0
 offset_right = 124.0
 offset_bottom = 363.0
 
+[connection signal="generate_text_finished" from="Llama" to="." method="_on_llama_generate_text_finished"]
 [connection signal="generate_text_updated" from="Llama" to="." method="_on_llama_generate_text_updated"]
 [connection signal="input_wait_started" from="Llama" to="." method="_on_llama_input_wait_started"]
 [connection signal="pressed" from="GenerateButton" to="." method="_on_generate_button_pressed"]

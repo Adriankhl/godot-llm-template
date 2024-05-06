@@ -133,3 +133,8 @@ func _on_model_button_pressed():
 func _on_model_chooser_file_selected(path):
 	$Llama.model_path = path
 	$ModelPathLabel.text = $Llama.model_path
+
+
+func _on_llama_generate_text_finished(text):
+	print("full generated text")
+	print(text)

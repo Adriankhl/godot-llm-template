@@ -120,8 +120,17 @@ func _on_schema_option_item_selected(index):
 	match index:
 		0:
 			$Prompt.text = default_prompt
+			$Llama.should_output_prompt = true
+			$Llama.should_output_bos = true
+			$Llama.should_output_eos = true				
 		1:
+			##Disable all these to get pure json output
+			$Llama.should_output_prompt = false
+			$Llama.should_output_bos = false
+			$Llama.should_output_eos = false
+
 			$Prompt.text = default_prompt_json
+
 
 
 func _on_model_button_pressed():
@@ -138,3 +147,13 @@ func _on_model_chooser_file_selected(path):
 func _on_llama_generate_text_finished(text):
 	print("full generated text")
 	print(text)
+	if ($SchemaOption.selected == 1):
+		var dict: Dictionary = {}
+		var json = JSON.new()
+		var error = json.parse(text)
+		if (error == OK):
+			dict = json.data
+		print("Json keys: ")
+		print(dict.keys())
+		print("Json values: ")
+		print(dict.values())

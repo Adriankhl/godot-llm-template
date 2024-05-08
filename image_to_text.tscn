@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://6pnpgbb3k4sl"]
+
+[ext_resource type="Script" path="res://image_to_text.gd" id="1_dxk0h"]
+
+[sub_resource type="Theme" id="Theme_343n6"]
+default_font_size = 32
+
+[node name="ImageToText" type="Node"]
+script = ExtResource("1_dxk0h")
+
+[node name="Llava" type="GDLlava" parent="."]
+
+[node name="ImageButton" type="Button" parent="."]
+offset_left = 96.0
+offset_top = 632.0
+offset_right = 152.0
+offset_bottom = 663.0
+text = "Image"
+
+[node name="ImageChooser" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(671, 600)
+theme = SubResource("Theme_343n6")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="BackButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Back"
+
+[node name="ImageScroll" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(600, 600)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ImageDisplay" type="TextureRect" parent="ImageScroll"]
+layout_mode = 2
+
+[connection signal="pressed" from="ImageButton" to="." method="_on_image_button_pressed"]
+[connection signal="file_selected" from="ImageChooser" to="." method="_on_image_chooser_file_selected"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

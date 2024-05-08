@@ -37,5 +37,14 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Embedding"
 
+[node name="ImageToTextButton" type="Button" parent="."]
+offset_left = 648.0
+offset_top = 616.0
+offset_right = 952.0
+offset_bottom = 701.0
+theme_override_font_sizes/font_size = 32
+text = "Image to Text"
+
 [connection signal="pressed" from="TextGenerationButton" to="." method="_on_text_generation_pressed"]
 [connection signal="pressed" from="EmbeddingButton" to="." method="_on_embedding_button_pressed"]
+[connection signal="pressed" from="ImageToTextButton" to="." method="_on_image_to_text_button_pressed"]

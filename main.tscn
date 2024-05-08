@@ -1,132 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://3fa6y5am1553"]
+[gd_scene load_steps=2 format=3 uid="uid://8di6md8tu606"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_31dcs"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxcje"]
-bg_color = Color(0.223103, 0.223103, 0.223103, 1)
-
-[sub_resource type="Theme" id="Theme_xu5is"]
-default_font_size = 32
-
-[sub_resource type="Theme" id="Theme_taf62"]
-default_font_size = 32
-
-[sub_resource type="Theme" id="Theme_pkcjd"]
-default_font_size = 32
 
 [node name="Main" type="Node"]
 script = ExtResource("1_31dcs")
 
-[node name="Llama" type="GDLlama" parent="."]
-model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
-n_predict = 256
-n_keep = 128
-escape = true
-
-[node name="Prompt" type="TextEdit" parent="."]
-custom_minimum_size = Vector2(1000, 300)
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="TextGeneration" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -234.0
+offset_right = 152.0
+offset_bottom = -149.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 32
-placeholder_text = "Prompt"
+text = "Text Generation"
 
-[node name="GeneratedText" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(1600, 500)
-offset_top = 400.0
-offset_right = 1600.0
-offset_bottom = 900.0
-focus_mode = 2
-theme_override_font_sizes/normal_font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_jxcje")
-text = "Generated Text"
-scroll_following = true
-selection_enabled = true
-
-[node name="GenerateButton" type="Button" parent="."]
-offset_left = 1068.0
-offset_top = 40.0
-offset_right = 1297.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 32
-text = "Generate"
-
-[node name="ContinueButton" type="Button" parent="."]
-offset_left = 1068.0
-offset_top = 170.0
-offset_right = 1297.0
-offset_bottom = 265.0
-theme_override_font_sizes/font_size = 32
-text = "Continue
-"
-
-[node name="StopGenerateButton" type="Button" parent="."]
-offset_left = 1354.0
-offset_top = 40.0
-offset_right = 1583.0
-offset_bottom = 135.0
-theme_override_font_sizes/font_size = 32
-text = "Stop
-"
-
-[node name="InteractOption" type="OptionButton" parent="."]
-offset_left = 1363.0
-offset_top = 191.0
-offset_right = 1578.0
-offset_bottom = 250.0
-theme = SubResource("Theme_xu5is")
-theme_override_font_sizes/font_size = 32
-item_count = 3
-selected = 0
-popup/item_0/text = "Simple"
-popup/item_0/id = 0
-popup/item_1/text = "Instruct"
-popup/item_1/id = 1
-popup/item_2/text = "Interactive"
-popup/item_2/id = 2
-
-[node name="SchemaOption" type="OptionButton" parent="."]
-offset_left = 1363.0
-offset_top = 300.0
-offset_right = 1578.0
-offset_bottom = 353.0
-theme = SubResource("Theme_taf62")
-item_count = 2
-selected = 0
-popup/item_0/text = "None"
-popup/item_0/id = 0
-popup/item_1/text = "Person"
-popup/item_1/id = 1
-
-[node name="ModelButton" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 338.0
-offset_right = 73.0
-offset_bottom = 369.0
-text = "Model"
-
-[node name="ModelChooser" type="FileDialog" parent="."]
-title = "Open a File"
-initial_position = 1
-size = Vector2i(671, 600)
-theme = SubResource("Theme_pkcjd")
-ok_button_text = "Open"
-file_mode = 0
-access = 2
-
-[node name="ModelPathLabel" type="Label" parent="."]
-offset_left = 84.0
-offset_top = 340.0
-offset_right = 124.0
-offset_bottom = 363.0
-
-[connection signal="generate_text_finished" from="Llama" to="." method="_on_llama_generate_text_finished"]
-[connection signal="generate_text_updated" from="Llama" to="." method="_on_llama_generate_text_updated"]
-[connection signal="input_wait_started" from="Llama" to="." method="_on_llama_input_wait_started"]
-[connection signal="pressed" from="GenerateButton" to="." method="_on_generate_button_pressed"]
-[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="StopGenerateButton" to="." method="_on_stop_generate_button_pressed"]
-[connection signal="item_selected" from="InteractOption" to="." method="_on_interact_option_item_selected"]
-[connection signal="item_selected" from="SchemaOption" to="." method="_on_schema_option_item_selected"]
-[connection signal="pressed" from="ModelButton" to="." method="_on_model_button_pressed"]
-[connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
-[connection signal="file_selected" from="ModelChooser" to="Llama" method="_on_model_chooser_file_selected"]
+[connection signal="pressed" from="TextGeneration" to="." method="_on_text_generation_pressed"]

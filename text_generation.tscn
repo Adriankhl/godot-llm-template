@@ -139,5 +139,4 @@ text = "Back
 [connection signal="item_selected" from="SchemaOption" to="." method="_on_schema_option_item_selected"]
 [connection signal="pressed" from="ModelButton" to="." method="_on_model_button_pressed"]
 [connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
-[connection signal="file_selected" from="ModelChooser" to="Llama" method="_on_model_chooser_file_selected"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

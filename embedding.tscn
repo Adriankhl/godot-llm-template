@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://qbkymlxjpnv2"]
+[gd_scene load_steps=5 format=3 uid="uid://qbkymlxjpnv2"]
 
 [ext_resource type="Script" path="res://embedding.gd" id="1_re74x"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cf5a"]
+bg_color = Color(0.223103, 0.223103, 0.223103, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eybah"]
+bg_color = Color(0.223529, 0.223529, 0.223529, 1)
+
+[sub_resource type="Theme" id="Theme_xn5a8"]
+default_font_size = 32
+
 [node name="Embedding" type="Node"]
 script = ExtResource("1_re74x")
+
+[node name="LlamaEmbedding" type="GDLlamaEmbedding" parent="."]
+model_path = "models/all-MiniLM-L6-v2-Q5_K_M.gguf"
 
 [node name="BackButton" type="Button" parent="."]
 anchors_preset = 1
@@ -14,4 +26,140 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "Back"
 
+[node name="PromptLeft" type="TextEdit" parent="."]
+offset_right = 600.0
+offset_bottom = 349.0
+theme_override_font_sizes/font_size = 32
+text = "Godot engine"
+placeholder_text = "Prompt
+"
+
+[node name="ComputeLeftButton" type="Button" parent="."]
+offset_left = 176.0
+offset_top = 392.0
+offset_right = 326.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 32
+text = "Compute"
+
+[node name="EmbeddingLeft" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(600, 400)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -400.0
+offset_right = 600.0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cf5a")
+
+[node name="PromptRight" type="TextEdit" parent="."]
+offset_left = 936.0
+offset_top = 4.0
+offset_right = 1536.0
+offset_bottom = 353.0
+theme_override_font_sizes/font_size = 32
+text = "Game"
+placeholder_text = "Prompt"
+
+[node name="ComputeRightButton" type="Button" parent="."]
+offset_left = 1256.0
+offset_top = 400.0
+offset_right = 1406.0
+offset_bottom = 453.0
+theme_override_font_sizes/font_size = 32
+text = "Compute
+"
+
+[node name="EmbeddingRight" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(600, 400)
+offset_left = 936.0
+offset_top = 500.0
+offset_right = 1536.0
+offset_bottom = 900.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_eybah")
+
+[node name="ModelButton" type="Button" parent="."]
+offset_left = 520.0
+offset_top = 416.0
+offset_right = 577.0
+offset_bottom = 447.0
+text = "Model"
+
+[node name="ModelPathLabel" type="Label" parent="."]
+offset_left = 584.0
+offset_top = 416.0
+offset_right = 624.0
+offset_bottom = 439.0
+
+[node name="ModelChooser" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(600, 600)
+theme = SubResource("Theme_xn5a8")
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="SimilarityTopButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 45.0
+offset_right = 36.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Similarity"
+
+[node name="SimilarityTop" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -184.0
+offset_top = 184.0
+offset_right = 120.0
+offset_bottom = 248.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="SimilarityBottomButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -324.0
+offset_right = 36.0
+offset_bottom = -271.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Similarity"
+
+[node name="SimilarityBottom" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -196.0
+offset_right = 120.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[connection signal="compute_embedding_finished" from="LlamaEmbedding" to="." method="_on_llama_embedding_compute_embedding_finished"]
+[connection signal="similarity_cos_string_finished" from="LlamaEmbedding" to="." method="_on_llama_embedding_similarity_cos_string_finished"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ComputeLeftButton" to="." method="_on_compute_left_button_pressed"]
+[connection signal="pressed" from="ComputeRightButton" to="." method="_on_compute_right_button_pressed"]
+[connection signal="pressed" from="ModelButton" to="." method="_on_model_button_pressed"]
+[connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
+[connection signal="pressed" from="SimilarityTopButton" to="." method="_on_similarity_top_button_pressed"]
+[connection signal="pressed" from="SimilarityBottomButton" to="." method="_on_similarity_bottom_button_pressed"]

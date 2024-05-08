@@ -33,7 +33,6 @@ var person_schema: String = JSON.stringify(_person_schema)
 
 
 func _ready():
-
 	if (OS.get_name() == "Android"):
 		OS.request_permissions()
 		$Llama.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/current.gguf"
@@ -130,7 +129,6 @@ func _on_schema_option_item_selected(index):
 			$Llama.should_output_eos = false
 
 			$Prompt.text = default_prompt_json
-
 
 
 func _on_model_button_pressed():

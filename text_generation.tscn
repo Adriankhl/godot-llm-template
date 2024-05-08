@@ -119,6 +119,16 @@ offset_top = 340.0
 offset_right = 124.0
 offset_bottom = 363.0
 
+[node name="BackButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Back
+"
+
 [connection signal="generate_text_finished" from="Llama" to="." method="_on_llama_generate_text_finished"]
 [connection signal="generate_text_updated" from="Llama" to="." method="_on_llama_generate_text_updated"]
 [connection signal="input_wait_started" from="Llama" to="." method="_on_llama_input_wait_started"]
@@ -130,3 +140,4 @@ offset_bottom = 363.0
 [connection signal="pressed" from="ModelButton" to="." method="_on_model_button_pressed"]
 [connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
 [connection signal="file_selected" from="ModelChooser" to="Llama" method="_on_model_chooser_file_selected"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

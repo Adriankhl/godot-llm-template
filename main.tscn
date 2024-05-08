@@ -5,7 +5,7 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_31dcs")
 
-[node name="TextGeneration" type="Button" parent="."]
+[node name="TextGenerationButton" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,4 +22,20 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 32
 text = "Text Generation"
 
-[connection signal="pressed" from="TextGeneration" to="." method="_on_text_generation_pressed"]
+[node name="EmbeddingButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -42.5
+offset_right = 152.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Embedding"
+
+[connection signal="pressed" from="TextGenerationButton" to="." method="_on_text_generation_pressed"]
+[connection signal="pressed" from="EmbeddingButton" to="." method="_on_embedding_button_pressed"]

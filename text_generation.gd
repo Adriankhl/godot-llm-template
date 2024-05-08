@@ -157,3 +157,8 @@ func _on_llama_generate_text_finished(text):
 		print(dict.keys())
 		print("Json values: ")
 		print(dict.values())
+
+
+func _on_back_button_pressed():
+	get_tree().change_scene_to_file("res://main.tscn")
+

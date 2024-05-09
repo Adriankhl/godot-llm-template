@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://6pnpgbb3k4sl"]
+[gd_scene load_steps=8 format=3 uid="uid://6pnpgbb3k4sl"]
 
 [ext_resource type="Script" path="res://image_to_text.gd" id="1_dxk0h"]
 
@@ -12,6 +12,12 @@ bg_color = Color(0.151276, 0.151276, 0.151276, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85fob"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+
+[sub_resource type="Theme" id="Theme_7t2us"]
+default_font_size = 32
+
+[sub_resource type="Theme" id="Theme_it06u"]
+default_font_size = 32
 
 [node name="ImageToText" type="Node"]
 script = ExtResource("1_dxk0h")
@@ -149,7 +155,8 @@ text = "Model"
 [node name="ModelChooser" type="FileDialog" parent="."]
 title = "Open a File"
 initial_position = 1
-size = Vector2i(600, 400)
+size = Vector2i(600, 600)
+theme = SubResource("Theme_7t2us")
 ok_button_text = "Open"
 file_mode = 0
 access = 2
@@ -171,7 +178,8 @@ text = "Mmproj
 [node name="MmprojChooser" type="FileDialog" parent="."]
 title = "Open a File"
 initial_position = 1
-size = Vector2i(600, 400)
+size = Vector2i(600, 600)
+theme = SubResource("Theme_it06u")
 ok_button_text = "Open"
 file_mode = 0
 access = 2
@@ -182,6 +190,15 @@ offset_top = 336.0
 offset_right = 1224.0
 offset_bottom = 359.0
 
+[node name="StopButton" type="Button" parent="."]
+offset_left = 1448.0
+offset_top = 384.0
+offset_right = 1527.0
+offset_bottom = 437.0
+theme_override_font_sizes/font_size = 32
+text = "Stop"
+
+[connection signal="generate_text_finished" from="Llava" to="." method="_on_llava_generate_text_finished"]
 [connection signal="generate_text_updated" from="Llava" to="." method="_on_llava_generate_text_updated"]
 [connection signal="pressed" from="ImageButton" to="." method="_on_image_button_pressed"]
 [connection signal="file_selected" from="ImageChooser" to="." method="_on_image_chooser_file_selected"]
@@ -195,3 +212,4 @@ offset_bottom = 359.0
 [connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
 [connection signal="pressed" from="MmprojButton" to="." method="_on_mmproj_button_pressed"]
 [connection signal="file_selected" from="MmprojChooser" to="." method="_on_mmproj_chooser_file_selected"]
+[connection signal="pressed" from="StopButton" to="." method="_on_stop_button_pressed"]

@@ -7,6 +7,8 @@ var right_array: PackedFloat32Array = []
 
 func _ready():
 	$ModelPathLabel.text = $LlamaEmbedding.model_path
+	if (OS.get_name() == "Android"):
+		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
 
 func _process(_delta):

@@ -31,21 +31,36 @@ var _person_schema = {
 
 var person_schema: String = JSON.stringify(_person_schema)
 
+var total_time = 0.0
 
 func _ready():
 	if (OS.get_name() == "Android"):
-		OS.request_permissions()
 		$Llama.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/current.gguf"
+		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 	## Disable the generate button while the thread is running
-	$GenerateButton.disabled = $Llama.is_running()
+	$GenerateButton.disabled = false
 	$ContinueButton.disabled = true
 	$Prompt.text = default_prompt
 	$ModelPathLabel.text = $Llama.model_path
 
 
-func _process(_delta):
-	## Disable the generate button while the thread is running
-	$GenerateButton.disabled = $Llama.is_running()
+func _process(delta):	
+	total_time += delta
+	# Don't check too frequently
+	if (total_time > 1.0):
+		if ($Llama.is_running()):
+			llama_active()
+		else:
+			llama_inactive()
+		total_time = 0.0
+
+
+func llama_active():
+	$GenerateButton.disabled = true
+
+
+func llama_inactive():
+	$GenerateButton.disabled = false
 
 
 func _on_generate_button_pressed():
@@ -132,8 +147,6 @@ func _on_schema_option_item_selected(index):
 
 
 func _on_model_button_pressed():
-	if (OS.get_name() == "Android"):
-		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 	$ModelChooser.popup()
 
 
@@ -154,7 +167,7 @@ func _on_llama_generate_text_finished(text):
 		print("Json keys: ")
 		print(dict.keys())
 		print("Json values: ")
-		print(dict.values())
+		print(dict.values())	
 
 
 func _on_back_button_pressed():

@@ -4,6 +4,7 @@ var update_label: RichTextLabel
 var left_array: PackedFloat32Array = []
 var right_array: PackedFloat32Array = []
 
+var total_time = 0.0
 
 func _ready():
 	$ModelPathLabel.text = $LlamaEmbedding.model_path
@@ -11,11 +12,14 @@ func _ready():
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
 
-func _process(_delta):
-	if ($LlamaEmbedding.is_running()):
-		llama_embedding_active()
-	else:
-		llama_embedding_inactive()
+func _process(delta):
+	total_time += delta
+	if (total_time > 1.0):
+		if ($LlamaEmbedding.is_running()):
+			llama_embedding_active()
+		else:
+			llama_embedding_inactive()
+		total_time = 0.0
 
 
 func llama_embedding_active():

@@ -1,5 +1,6 @@
 extends Node
 
+var total_time = 0.0
 
 func _ready():
 	$ModelPathLabel.text = $Llava.model_path
@@ -10,11 +11,14 @@ func _ready():
 		$ImageChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
 
-func _process(_delta):
-	if $Llava.is_running():
-		llava_active()
-	else:
-		llava_inactive()
+func _process(delta):
+	total_time += delta
+	if (total_time > 1.0):
+		if ($Llava.is_running()):
+			llava_active()
+		else:
+			llava_inactive()
+		total_time = 0.0
 
 func llava_active():
 	$GenFromImage.disabled = true

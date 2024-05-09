@@ -11,18 +11,18 @@ func _ready():
 
 func _process(_delta):
 	if ($LlamaEmbedding.is_running()):
-		llama_embedding_start()
+		llama_embedding_active()
 	else:
-		llama_embedding_stop()
+		llama_embedding_inactive()
 
 
-func llama_embedding_start():
+func llama_embedding_active():
 	$ComputeLeftButton.disabled = true
 	$ComputeRightButton.disabled = true
 	$SimilarityTopButton.disabled = true
 
 
-func llama_embedding_stop():
+func llama_embedding_inactive():
 	$ComputeLeftButton.disabled = false
 	$ComputeRightButton.disabled = false
 	$SimilarityTopButton.disabled = false
@@ -39,7 +39,7 @@ func _on_compute_left_button_pressed():
 
 
 func _on_compute_right_button_pressed():
-	llama_embedding_start()
+	llama_embedding_active()
 	update_label = $EmbeddingRight
 	update_label.text = ""
 	$LlamaEmbedding.run_compute_embedding($PromptRight.text)
@@ -54,7 +54,7 @@ func _on_model_chooser_file_selected(path):
 
 
 func _on_similarity_top_button_pressed():
-	llama_embedding_start()
+	llama_embedding_active()
 	$LlamaEmbedding.run_similarity_cos_string($PromptLeft.text, $PromptRight.text)
 
 
@@ -67,12 +67,10 @@ func _on_llama_embedding_compute_embedding_finished(embedding):
 	for f in embedding:
 		update_label.text += String.num(f)
 		update_label.text += "\n"
-	llama_embedding_stop()
 
 
 func _on_llama_embedding_similarity_cos_string_finished(similarity):
 	$SimilarityTop.text = String.num(similarity)
-	llama_embedding_stop()
 
 
 func _on_similarity_bottom_button_pressed():

@@ -65,9 +65,9 @@ placeholder_text = "Prompts"
 wrap_mode = 1
 
 [node name="Base64Compute" type="Button" parent="."]
-offset_left = 240.0
+offset_left = 216.0
 offset_top = 616.0
-offset_right = 379.0
+offset_right = 355.0
 offset_bottom = 647.0
 text = "Compute Base64
 "
@@ -91,27 +91,35 @@ wrap_mode = 1
 
 [node name="GenerateLabel" type="Label" parent="."]
 offset_left = 632.0
-offset_top = 360.0
+offset_top = 384.0
 offset_right = 877.0
-offset_bottom = 405.0
+offset_bottom = 429.0
 theme_override_font_sizes/font_size = 32
 text = "Generate from: "
 
 [node name="GenFromImage" type="Button" parent="."]
-offset_left = 888.0
-offset_top = 360.0
-offset_right = 992.0
-offset_bottom = 413.0
+offset_left = 896.0
+offset_top = 384.0
+offset_right = 1000.0
+offset_bottom = 437.0
 theme_override_font_sizes/font_size = 32
 text = "Image"
 
 [node name="GenFromBase64" type="Button" parent="."]
 offset_left = 1016.0
-offset_top = 360.0
+offset_top = 384.0
 offset_right = 1134.0
-offset_bottom = 413.0
+offset_bottom = 437.0
 theme_override_font_sizes/font_size = 32
 text = "Base64"
+
+[node name="GenFromView" type="Button" parent="."]
+offset_left = 1152.0
+offset_top = 384.0
+offset_right = 1233.0
+offset_bottom = 437.0
+theme_override_font_sizes/font_size = 32
+text = "View"
 
 [node name="GeneratedText" type="RichTextLabel" parent="."]
 anchors_preset = 3
@@ -131,6 +139,49 @@ theme_override_font_sizes/mono_font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_85fob")
 text = "Generated text"
 
+[node name="ModelButton" type="Button" parent="."]
+offset_left = 648.0
+offset_top = 280.0
+offset_right = 705.0
+offset_bottom = 311.0
+text = "Model"
+
+[node name="ModelChooser" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="ModelPathLabel" type="Label" parent="."]
+offset_left = 736.0
+offset_top = 288.0
+offset_right = 1224.0
+offset_bottom = 311.0
+
+[node name="MmprojButton" type="Button" parent="."]
+offset_left = 640.0
+offset_top = 328.0
+offset_right = 710.0
+offset_bottom = 359.0
+text = "Mmproj
+"
+
+[node name="MmprojChooser" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="MmprojPathLabel" type="Label" parent="."]
+offset_left = 736.0
+offset_top = 336.0
+offset_right = 1224.0
+offset_bottom = 359.0
+
 [connection signal="generate_text_updated" from="Llava" to="." method="_on_llava_generate_text_updated"]
 [connection signal="pressed" from="ImageButton" to="." method="_on_image_button_pressed"]
 [connection signal="file_selected" from="ImageChooser" to="." method="_on_image_chooser_file_selected"]
@@ -139,3 +190,8 @@ text = "Generated text"
 [connection signal="pressed" from="ImageCompute" to="." method="_on_image_compute_pressed"]
 [connection signal="pressed" from="GenFromImage" to="." method="_on_gen_from_image_pressed"]
 [connection signal="pressed" from="GenFromBase64" to="." method="_on_gen_from_base_64_pressed"]
+[connection signal="pressed" from="GenFromView" to="." method="_on_gen_from_view_pressed"]
+[connection signal="pressed" from="ModelButton" to="." method="_on_model_button_pressed"]
+[connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
+[connection signal="pressed" from="MmprojButton" to="." method="_on_mmproj_button_pressed"]
+[connection signal="file_selected" from="MmprojChooser" to="." method="_on_mmproj_chooser_file_selected"]

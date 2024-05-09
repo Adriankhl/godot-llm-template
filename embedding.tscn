@@ -88,7 +88,7 @@ text = "Model"
 [node name="ModelPathLabel" type="Label" parent="."]
 offset_left = 584.0
 offset_top = 416.0
-offset_right = 624.0
+offset_right = 1016.0
 offset_bottom = 439.0
 
 [node name="ModelChooser" type="FileDialog" parent="."]

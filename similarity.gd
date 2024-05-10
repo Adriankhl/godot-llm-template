@@ -7,7 +7,7 @@ var right_array: PackedFloat32Array = []
 var total_time = 0.0
 
 func _ready():
-	$ModelPathLabel.text = $LlamaEmbedding.model_path
+	$ModelPathLabel.text = $Embedding.model_path
 	if (OS.get_name() == "Android"):
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
@@ -15,22 +15,22 @@ func _ready():
 func _process(delta):
 	total_time += delta
 	if (total_time > 1.0):
-		if ($LlamaEmbedding.is_running()):
-			llama_embedding_active()
+		if ($Embedding.is_running()):
+			embedding_active()
 		else:
-			llama_embedding_inactive()
+			embedding_inactive()
 		total_time = 0.0
 
 
-func llama_embedding_active():
-	$ComputeLeftButton.disabled = true
-	$ComputeRightButton.disabled = true
+func embedding_active():
+	$EmbeddingLeftButton.disabled = true
+	$EmbeddingRightButton.disabled = true
 	$SimilarityTopButton.disabled = true
 
 
-func llama_embedding_inactive():
-	$ComputeLeftButton.disabled = false
-	$ComputeRightButton.disabled = false
+func embedding_inactive():
+	$EmbeddingLeftButton.disabled = false
+	$EmbeddingRightButton.disabled = false
 	$SimilarityTopButton.disabled = false
 
 
@@ -38,17 +38,19 @@ func _on_back_button_pressed():
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
-func _on_compute_left_button_pressed():
+
+func _on_embedding_left_button_pressed():
+	embedding_active()
 	update_label = $EmbeddingLeft
 	update_label.text = ""
-	$LlamaEmbedding.run_compute_embedding($PromptLeft.text)
+	$Embedding.run_compute_embedding($PromptLeft.text)
 
 
-func _on_compute_right_button_pressed():
-	llama_embedding_active()
+func _on_embedding_right_button_pressed():
+	embedding_active()
 	update_label = $EmbeddingRight
 	update_label.text = ""
-	$LlamaEmbedding.run_compute_embedding($PromptRight.text)
+	$Embedding.run_compute_embedding($PromptRight.text)
 
 
 func _on_model_button_pressed():
@@ -56,15 +58,16 @@ func _on_model_button_pressed():
 
 
 func _on_model_chooser_file_selected(path):
-	$LlamaEmbedding.model_path = path
+	$Embedding.model_path = path
+	$ModelPathLabel.text = $Embedding.model_path
 
 
 func _on_similarity_top_button_pressed():
-	llama_embedding_active()
-	$LlamaEmbedding.run_similarity_cos_string($PromptLeft.text, $PromptRight.text)
+	embedding_active()
+	$Embedding.run_similarity_cos_string($PromptLeft.text, $PromptRight.text)
 
 
-func _on_llama_embedding_compute_embedding_finished(embedding):
+func _on_embedding_compute_embedding_finished(embedding):
 	update_label.text = ""
 	if (update_label == $EmbeddingLeft):
 		left_array = embedding
@@ -75,9 +78,10 @@ func _on_llama_embedding_compute_embedding_finished(embedding):
 		update_label.text += "\n"
 
 
-func _on_llama_embedding_similarity_cos_string_finished(similarity):
+func _on_embedding_similarity_cos_string_finished(similarity):
 	$SimilarityTop.text = String.num(similarity)
 
 
 func _on_similarity_bottom_button_pressed():
-	$SimilarityBottom.text = String.num($LlamaEmbedding.similarity_cos_array(left_array, right_array))
+	$SimilarityBottom.text = String.num($Embedding.similarity_cos_array(left_array, right_array))
+

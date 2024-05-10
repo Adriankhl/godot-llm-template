@@ -21,7 +21,6 @@ Folder and file structure:
 │       │   ├── libgodot_llm.linux.debug.x86_64.so
 │       │   ├── libgodot_llm.linux.release.x86_64.so
 │       │   ├── libgodot_llm.windows.debug.amd64.dll
-│       │   ├── ~libgodot_llm.windows.release.amd64.dll
 │       │   └── libgodot_llm.windows.release.amd64.dll
 │       └── godot_llm.gdextension
 ├── icon.svg

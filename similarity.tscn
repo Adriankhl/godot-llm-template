@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://qbkymlxjpnv2"]
 
-[ext_resource type="Script" path="res://embedding.gd" id="1_re74x"]
+[ext_resource type="Script" path="res://similarity.gd" id="1_yu2dm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cf5a"]
 bg_color = Color(0.223103, 0.223103, 0.223103, 1)
@@ -11,11 +11,11 @@ bg_color = Color(0.223529, 0.223529, 0.223529, 1)
 [sub_resource type="Theme" id="Theme_xn5a8"]
 default_font_size = 32
 
-[node name="Embedding" type="Node"]
-script = ExtResource("1_re74x")
+[node name="Similarity" type="Node"]
+script = ExtResource("1_yu2dm")
 
-[node name="LlamaEmbedding" type="GDLlamaEmbedding" parent="."]
-model_path = "models/all-MiniLM-L6-v2-Q5_K_M.gguf"
+[node name="Embedding" type="GDEmbedding" parent="."]
+model_path = "models/mxbai-embed-large-v1.Q5_K_M.gguf"
 
 [node name="BackButton" type="Button" parent="."]
 anchors_preset = 1
@@ -34,13 +34,13 @@ text = "Godot engine"
 placeholder_text = "Prompt
 "
 
-[node name="ComputeLeftButton" type="Button" parent="."]
-offset_left = 176.0
+[node name="EmbeddingLeftButton" type="Button" parent="."]
+offset_left = 165.0
 offset_top = 392.0
-offset_right = 326.0
+offset_right = 347.0
 offset_bottom = 445.0
 theme_override_font_sizes/font_size = 32
-text = "Compute"
+text = "Embedding"
 
 [node name="EmbeddingLeft" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(600, 400)
@@ -61,14 +61,13 @@ theme_override_font_sizes/font_size = 32
 text = "Game"
 placeholder_text = "Prompt"
 
-[node name="ComputeRightButton" type="Button" parent="."]
-offset_left = 1256.0
+[node name="EmbeddingRightButton" type="Button" parent="."]
+offset_left = 1182.0
 offset_top = 400.0
-offset_right = 1406.0
+offset_right = 1364.0
 offset_bottom = 453.0
 theme_override_font_sizes/font_size = 32
-text = "Compute
-"
+text = "Embedding"
 
 [node name="EmbeddingRight" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(600, 400)
@@ -90,6 +89,7 @@ offset_left = 584.0
 offset_top = 416.0
 offset_right = 1016.0
 offset_bottom = 439.0
+autowrap_mode = 3
 
 [node name="ModelChooser" type="FileDialog" parent="."]
 title = "Open a File"
@@ -154,11 +154,11 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
-[connection signal="compute_embedding_finished" from="LlamaEmbedding" to="." method="_on_llama_embedding_compute_embedding_finished"]
-[connection signal="similarity_cos_string_finished" from="LlamaEmbedding" to="." method="_on_llama_embedding_similarity_cos_string_finished"]
+[connection signal="compute_embedding_finished" from="Embedding" to="." method="_on_embedding_compute_embedding_finished"]
+[connection signal="similarity_cos_string_finished" from="Embedding" to="." method="_on_embedding_similarity_cos_string_finished"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="ComputeLeftButton" to="." method="_on_compute_left_button_pressed"]
-[connection signal="pressed" from="ComputeRightButton" to="." method="_on_compute_right_button_pressed"]
+[connection signal="pressed" from="EmbeddingLeftButton" to="." method="_on_embedding_left_button_pressed"]
+[connection signal="pressed" from="EmbeddingRightButton" to="." method="_on_embedding_right_button_pressed"]
 [connection signal="pressed" from="ModelButton" to="." method="_on_model_button_pressed"]
 [connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
 [connection signal="pressed" from="SimilarityTopButton" to="." method="_on_similarity_top_button_pressed"]

@@ -22,7 +22,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 32
 text = "Text Generation"
 
-[node name="EmbeddingButton" type="Button" parent="."]
+[node name="SimilarityButton" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -35,7 +35,7 @@ offset_bottom = 42.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
-text = "Embedding"
+text = "Similarity"
 
 [node name="ImageToTextButton" type="Button" parent="."]
 offset_left = 648.0
@@ -46,5 +46,5 @@ theme_override_font_sizes/font_size = 32
 text = "Image to Text"
 
 [connection signal="pressed" from="TextGenerationButton" to="." method="_on_text_generation_pressed"]
-[connection signal="pressed" from="EmbeddingButton" to="." method="_on_embedding_button_pressed"]
+[connection signal="pressed" from="SimilarityButton" to="." method="_on_similarity_button_pressed"]
 [connection signal="pressed" from="ImageToTextButton" to="." method="_on_image_to_text_button_pressed"]

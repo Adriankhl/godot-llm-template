@@ -47,7 +47,7 @@ func _on_image_chooser_file_selected(path):
 
 func _on_from_view_button_pressed():
 	var i = get_viewport().get_texture().get_image()
-	i.resize(i.get_width() * 0.5, i.get_height() * 0.5)
+	i.resize(int(i.get_width() * 0.5), int(i.get_height() * 0.5))
 	var t = ImageTexture.create_from_image(i)
 	$ImageScroll/ImageDisplay.texture = t
 

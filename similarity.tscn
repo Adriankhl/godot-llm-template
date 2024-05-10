@@ -54,9 +54,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4cf5a")
 
 [node name="PromptRight" type="TextEdit" parent="."]
 offset_left = 936.0
-offset_top = 4.0
 offset_right = 1536.0
-offset_bottom = 353.0
+offset_bottom = 349.0
 theme_override_font_sizes/font_size = 32
 text = "Game"
 placeholder_text = "Prompt"

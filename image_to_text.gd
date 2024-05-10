@@ -30,18 +30,25 @@ func llava_inactive():
 	$GenFromBase64.disabled = false
 	$GenFromView.disabled = false
 
-func _on_image_button_pressed():
-	$ImageChooser.popup()
-
 
 func _on_back_button_pressed():
 	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_image_button_pressed():
+	$ImageChooser.popup()
 
 
 func _on_image_chooser_file_selected(path):
 	var image = Image.new()
 	image.load(path)
 	var t = ImageTexture.create_from_image(image)
+	$ImageScroll/ImageDisplay.texture = t
+
+func _on_from_view_button_pressed():
+	var i = get_viewport().get_texture().get_image()
+	i.resize(i.get_width() * 0.5, i.get_height() * 0.5)
+	var t = ImageTexture.create_from_image(i)
 	$ImageScroll/ImageDisplay.texture = t
 
 
@@ -104,3 +111,5 @@ func _on_llava_generate_text_finished(text):
 
 func _on_stop_button_pressed():
 	$Llava.stop_generate_text()
+
+

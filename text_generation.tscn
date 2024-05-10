@@ -19,8 +19,8 @@ script = ExtResource("1_jujmh")
 
 [node name="Llama" type="GDLlama" parent="."]
 model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
-n_predict = 256
 n_keep = 128
+n_threads = 1
 escape = true
 
 [node name="Prompt" type="TextEdit" parent="."]

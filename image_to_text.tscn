@@ -44,6 +44,14 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 
+[node name="FromViewButton" type="Button" parent="."]
+offset_left = 91.0
+offset_top = 616.0
+offset_right = 181.0
+offset_bottom = 647.0
+text = "From View
+"
+
 [node name="BackButton" type="Button" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -72,9 +80,9 @@ placeholder_text = "Prompts"
 wrap_mode = 1
 
 [node name="Base64Compute" type="Button" parent="."]
-offset_left = 216.0
+offset_left = 275.0
 offset_top = 616.0
-offset_right = 355.0
+offset_right = 414.0
 offset_bottom = 647.0
 text = "Compute Base64
 "
@@ -203,6 +211,7 @@ text = "Stop"
 [connection signal="generate_text_updated" from="Llava" to="." method="_on_llava_generate_text_updated"]
 [connection signal="pressed" from="ImageButton" to="." method="_on_image_button_pressed"]
 [connection signal="file_selected" from="ImageChooser" to="." method="_on_image_chooser_file_selected"]
+[connection signal="pressed" from="FromViewButton" to="." method="_on_from_view_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Base64Compute" to="." method="_on_base_64_compute_pressed"]
 [connection signal="pressed" from="ImageCompute" to="." method="_on_image_compute_pressed"]

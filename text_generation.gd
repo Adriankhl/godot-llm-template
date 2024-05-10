@@ -55,6 +55,15 @@ func _process(delta):
 		total_time = 0.0
 
 
+func _notification(what):
+	match(what):
+		NOTIFICATION_WM_CLOSE_REQUEST:
+			## Handle Quit signal
+			print("Quiting")
+			$Llama.stop_generate_text()
+			get_tree().quit() # default behavior
+
+
 func llama_active():
 	$GenerateButton.disabled = true
 
@@ -171,4 +180,5 @@ func _on_llama_generate_text_finished(text):
 
 
 func _on_back_button_pressed():
+	$Llama.stop_generate_text()
 	get_tree().change_scene_to_file("res://main.tscn")

@@ -20,6 +20,16 @@ func _process(delta):
 			llava_inactive()
 		total_time = 0.0
 
+
+func _notification(what):
+	match(what):
+		NOTIFICATION_WM_CLOSE_REQUEST:
+			## Handle Quit signal
+			print("Quiting")
+			$Llava.stop_generate_text()
+			get_tree().quit() # default behavior
+
+
 func llava_active():
 	$GenFromImage.disabled = true
 	$GenFromBase64.disabled = true
@@ -32,6 +42,7 @@ func llava_inactive():
 
 
 func _on_back_button_pressed():
+	$Llava.stop_generate_text()
 	get_tree().change_scene_to_file("res://main.tscn")
 
 

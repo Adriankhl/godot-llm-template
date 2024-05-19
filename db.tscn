@@ -1,0 +1,105 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpa4byfxgp78"]
+
+[ext_resource type="Script" path="res://db.gd" id="1_jnawe"]
+
+[sub_resource type="LlmDBMetaData" id="LlmDBMetaData_iwy20"]
+data_name = "id"
+data_type = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m03tj"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+
+[node name="DB" type="Node"]
+script = ExtResource("1_jnawe")
+
+[node name="LlmDB" type="LlmDB" parent="."]
+meta = Array[LlmDBMetaData]([SubResource("LlmDBMetaData_iwy20")])
+model_path = "models/mxbai-embed-large-v1.Q5_K_M.gguf"
+
+[node name="Document" type="TextEdit" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -392.0
+offset_right = 700.0
+grow_vertical = 0
+placeholder_text = "Document
+"
+wrap_mode = 1
+
+[node name="Output" type="RichTextLabel" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -710.0
+offset_top = -394.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_m03tj")
+
+[node name="MetaButton" type="Button" parent="."]
+offset_left = 76.0
+offset_top = 49.0
+offset_right = 237.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 32
+text = "Meta data schema: id, year"
+
+[node name="CreateTableButton" type="Button" parent="."]
+offset_left = 176.0
+offset_top = 119.0
+offset_right = 373.0
+offset_bottom = 172.0
+theme_override_font_sizes/font_size = 32
+text = "Create tables"
+
+[node name="DocumentMetaButton" type="Button" parent="."]
+offset_left = 584.0
+offset_top = 53.0
+offset_right = 1201.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 32
+text = "Insert (Document2024, 2024) meta data"
+
+[node name="SplitTextButton" type="Button" parent="."]
+offset_left = 204.0
+offset_top = 193.0
+offset_right = 351.0
+offset_bottom = 246.0
+theme_override_font_sizes/font_size = 32
+text = "Split text"
+
+[node name="StoreTextButton" type="Button" parent="."]
+offset_left = 167.0
+offset_top = 267.0
+offset_right = 396.0
+offset_bottom = 321.0
+theme_override_font_sizes/font_size = 32
+text = "Store text"
+
+[node name="Prompt" type="TextEdit" parent="."]
+offset_left = 953.0
+offset_top = 207.0
+offset_right = 1511.0
+offset_bottom = 326.0
+theme_override_font_sizes/font_size = 32
+text = "Godot engine"
+placeholder_text = "Prompt"
+wrap_mode = 1
+
+[node name="RetrieveButton" type="Button" parent="."]
+offset_left = 1142.0
+offset_top = 356.0
+offset_right = 1277.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 32
+text = "Retrieve"
+
+[connection signal="pressed" from="MetaButton" to="." method="_on_meta_button_pressed"]
+[connection signal="pressed" from="CreateTableButton" to="." method="_on_create_table_button_pressed"]
+[connection signal="pressed" from="DocumentMetaButton" to="." method="_on_document_meta_button_pressed"]
+[connection signal="pressed" from="SplitTextButton" to="." method="_on_split_text_button_pressed"]
+[connection signal="pressed" from="StoreTextButton" to="." method="_on_store_text_button_pressed"]
+[connection signal="pressed" from="RetrieveButton" to="." method="_on_retrieve_button_pressed"]

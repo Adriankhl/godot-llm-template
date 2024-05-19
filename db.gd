@@ -13,6 +13,8 @@ Linux (/ˈlɪnʊks/ LIN-uuks)[11] is a family of open-source Unix-like operating
 func _ready():
 	$LlmDB.open_db()
 	$Document.text = default_document
+	if (OS.get_name() == "Android"):
+		$LlmDB.db_dir = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/models"
 
 func _exit_tree():
 	$LlmDB.close_db()
@@ -38,7 +40,7 @@ func _on_split_text_button_pressed():
 	var array = $LlmDB.split_text($Document.text)
 	$Output.clear()
 	for s in array:
-		$Output.text += s + "\n"
+		$Output.text += s + "\n\n"
 
 
 func _on_store_text_button_pressed():
@@ -46,7 +48,19 @@ func _on_store_text_button_pressed():
 
 
 func _on_retrieve_button_pressed():
-	var array = $LlmDB.retrieve_similar_texts($Prompt.text, "year=2024", 3)
-	$Output.clear()
+	$LlmDB.run_retrieve_similar_texts($Prompt.text, $Filter.text, 3)
+
+
+func _on_store_text_by_id_button_pressed():
+	$LlmDB.store_meta({
+		"id": "Document2023",
+		"year": 2023,
+	})
+	$LlmDB.run_store_text_by_id("Document2023", $Document.text)
+
+
+func _on_llm_db_retrieve_similar_text_finished(array):
+	$Output.text = ""
 	for s in array:
-		$Output.text += s + "\n"
+		$Output.text += s + "\n\n"
+

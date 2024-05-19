@@ -11,10 +11,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -152.0
-offset_top = -234.0
-offset_right = 152.0
-offset_bottom = -149.0
+offset_left = -517.0
+offset_top = -201.0
+offset_right = -213.0
+offset_bottom = -116.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -28,23 +28,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -152.0
-offset_top = -42.5
-offset_right = 152.0
-offset_bottom = 42.5
+offset_left = -519.0
+offset_top = -22.0
+offset_right = -215.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Similarity"
 
 [node name="ImageToTextButton" type="Button" parent="."]
-offset_left = 648.0
-offset_top = 616.0
-offset_right = 952.0
-offset_bottom = 701.0
+offset_left = 1013.0
+offset_top = 258.0
+offset_right = 1317.0
+offset_bottom = 343.0
 theme_override_font_sizes/font_size = 32
 text = "Image to Text"
+
+[node name="VectorDatabaseButton" type="Button" parent="."]
+offset_left = 1019.0
+offset_top = 430.0
+offset_right = 1323.0
+offset_bottom = 515.0
+theme_override_font_sizes/font_size = 32
+text = "Vector Database"
 
 [connection signal="pressed" from="TextGenerationButton" to="." method="_on_text_generation_pressed"]
 [connection signal="pressed" from="SimilarityButton" to="." method="_on_similarity_button_pressed"]
 [connection signal="pressed" from="ImageToTextButton" to="." method="_on_image_to_text_button_pressed"]
+[connection signal="pressed" from="VectorDatabaseButton" to="." method="_on_vector_database_button_pressed"]

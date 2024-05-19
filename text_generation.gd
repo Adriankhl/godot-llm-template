@@ -123,7 +123,7 @@ func _on_interact_option_item_selected(index):
 					$Prompt.text = default_prompt
 				1:
 					$Prompt.text = default_prompt_json
-		1:
+		1: # This is removed temporarily since instruct mode is not functioning well for llama 3	
 			$GenerateButton.text = "Start"
 			$Llama.instruct = true
 			$Llama.interactive = false

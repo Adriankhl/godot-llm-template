@@ -33,6 +33,7 @@ theme_override_font_sizes/font_size = 32
 text = "Godot engine"
 placeholder_text = "Prompt
 "
+wrap_mode = 1
 
 [node name="EmbeddingLeftButton" type="Button" parent="."]
 offset_left = 165.0
@@ -59,6 +60,7 @@ offset_bottom = 349.0
 theme_override_font_sizes/font_size = 32
 text = "Game"
 placeholder_text = "Prompt"
+wrap_mode = 1
 
 [node name="EmbeddingRightButton" type="Button" parent="."]
 offset_left = 1182.0

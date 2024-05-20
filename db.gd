@@ -13,8 +13,10 @@ Linux (/ˈlɪnʊks/ LIN-uuks)[11] is a family of open-source Unix-like operating
 func _ready():
 	$LlmDB.open_db()
 	$Document.text = default_document
+	$ModelPathLabel.text = $LlmDB.model_path
 	if (OS.get_name() == "Android"):
 		$LlmDB.db_dir = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/models"
+		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
 func _exit_tree():
 	$LlmDB.close_db()
@@ -64,3 +66,16 @@ func _on_llm_db_retrieve_similar_text_finished(array):
 	for s in array:
 		$Output.text += s + "\n\n"
 
+
+func _on_back_button_pressed():
+	$Llama.stop_generate_text()
+	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_model_button_pressed():
+	$ModelChooser.visible = true
+
+
+func _on_model_chooser_file_selected(path):
+	$LlmDB.model_path = path
+	$ModelPathLabel.text = $LlmDB.model_path

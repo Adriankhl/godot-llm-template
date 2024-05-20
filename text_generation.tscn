@@ -19,9 +19,9 @@ script = ExtResource("1_jujmh")
 
 [node name="Llama" type="GDLlama" parent="."]
 model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
-n_predict = 256
 n_keep = 128
 n_threads = 1
+n_gpu_layer = 20
 escape = true
 
 [node name="Prompt" type="TextEdit" parent="."]
@@ -76,12 +76,16 @@ offset_right = 1578.0
 offset_bottom = 250.0
 theme = SubResource("Theme_xu5is")
 theme_override_font_sizes/font_size = 32
-item_count = 2
+item_count = 3
 selected = 0
+fit_to_longest_item = false
 popup/item_0/text = "Simple"
 popup/item_0/id = 0
-popup/item_1/text = "Interactive"
-popup/item_1/id = 2
+popup/item_1/text = "Instruct"
+popup/item_1/id = 1
+popup/item_1/disabled = true
+popup/item_2/text = "Interactive"
+popup/item_2/id = 2
 
 [node name="SchemaOption" type="OptionButton" parent="."]
 offset_left = 1363.0

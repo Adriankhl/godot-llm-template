@@ -11,12 +11,12 @@ Linux (/ˈlɪnʊks/ LIN-uuks)[11] is a family of open-source Unix-like operating
 "
 
 func _ready():
-	$LlmDB.open_db()
 	$Document.text = default_document
 	$ModelPathLabel.text = $LlmDB.model_path
 	if (OS.get_name() == "Android"):
 		$LlmDB.db_dir = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/models"
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+	$LlmDB.open_db()
 
 func _exit_tree():
 	$LlmDB.close_db()
@@ -32,11 +32,10 @@ func _on_create_table_button_pressed():
 	$LlmDB.calibrate_embedding_size()
 	$LlmDB.create_llm_tables()
 
-func _on_document_meta_button_pressed():
-	$LlmDB.insert_meta({
-		"id": "Document2024",
-		"year": 2024,
-	})
+
+func _on_drop_table_button_pressed():
+	$LlmDB.drop_llm_tables($LlmDB.table_name)
+
 
 func _on_split_text_button_pressed():
 	var array = $LlmDB.split_text($Document.text)
@@ -79,3 +78,8 @@ func _on_model_button_pressed():
 func _on_model_chooser_file_selected(path):
 	$LlmDB.model_path = path
 	$ModelPathLabel.text = $LlmDB.model_path
+
+
+func _on_execute_button_pressed():
+	$LlmDB.execute($Prompt.text)
+	print($LlmDB.has_id("Document2022", "llm_table_meta"))

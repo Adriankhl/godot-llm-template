@@ -60,34 +60,42 @@ theme_override_font_sizes/font_size = 32
 text = "Meta data schema: id, year"
 
 [node name="CreateTableButton" type="Button" parent="."]
-offset_left = 176.0
-offset_top = 119.0
-offset_right = 373.0
-offset_bottom = 172.0
+offset_left = 69.0
+offset_top = 122.0
+offset_right = 282.0
+offset_bottom = 175.0
 theme_override_font_sizes/font_size = 32
 text = "Create tables"
 
+[node name="DropTableButton" type="Button" parent="."]
+offset_left = 330.0
+offset_top = 124.0
+offset_right = 518.0
+offset_bottom = 177.0
+theme_override_font_sizes/font_size = 32
+text = "Drop tables"
+
 [node name="StoreTextByIdButton" type="Button" parent="."]
-offset_left = 361.0
-offset_top = 276.0
-offset_right = 613.0
+offset_left = 333.0
+offset_top = 280.0
+offset_right = 585.0
 offset_bottom = 336.0
 theme_override_font_sizes/font_size = 32
 text = "Store text by id"
 
 [node name="SplitTextButton" type="Button" parent="."]
-offset_left = 204.0
-offset_top = 193.0
-offset_right = 351.0
-offset_bottom = 246.0
+offset_left = 227.0
+offset_top = 196.0
+offset_right = 374.0
+offset_bottom = 249.0
 theme_override_font_sizes/font_size = 32
 text = "Split text"
 
 [node name="StoreTextButton" type="Button" parent="."]
-offset_left = 90.0
-offset_top = 279.0
-offset_right = 319.0
-offset_bottom = 333.0
+offset_left = 61.0
+offset_top = 280.0
+offset_right = 290.0
+offset_bottom = 334.0
 theme_override_font_sizes/font_size = 32
 text = "Store text"
 
@@ -102,10 +110,10 @@ placeholder_text = "Prompt"
 wrap_mode = 1
 
 [node name="RetrieveButton" type="Button" parent="."]
-offset_left = 1154.0
-offset_top = 369.0
-offset_right = 1289.0
-offset_bottom = 422.0
+offset_left = 1237.0
+offset_top = 368.0
+offset_right = 1372.0
+offset_bottom = 421.0
 theme_override_font_sizes/font_size = 32
 text = "Retrieve"
 
@@ -133,6 +141,7 @@ size = Vector2i(900, 600)
 theme = SubResource("Theme_g844c")
 ok_button_text = "Open"
 file_mode = 0
+access = 2
 
 [node name="ModelPathLabel" type="Label" parent="."]
 offset_left = 120.0
@@ -140,13 +149,23 @@ offset_top = 406.0
 offset_right = 544.0
 offset_bottom = 429.0
 
+[node name="ExecuteButton" type="Button" parent="."]
+offset_left = 1066.0
+offset_top = 365.0
+offset_right = 1195.0
+offset_bottom = 418.0
+theme_override_font_sizes/font_size = 32
+text = "Execute"
+
 [connection signal="retrieve_similar_text_finished" from="LlmDB" to="." method="_on_llm_db_retrieve_similar_text_finished"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MetaButton" to="." method="_on_meta_button_pressed"]
 [connection signal="pressed" from="CreateTableButton" to="." method="_on_create_table_button_pressed"]
+[connection signal="pressed" from="DropTableButton" to="." method="_on_drop_table_button_pressed"]
 [connection signal="pressed" from="StoreTextByIdButton" to="." method="_on_store_text_by_id_button_pressed"]
 [connection signal="pressed" from="SplitTextButton" to="." method="_on_split_text_button_pressed"]
 [connection signal="pressed" from="StoreTextButton" to="." method="_on_store_text_button_pressed"]
 [connection signal="pressed" from="RetrieveButton" to="." method="_on_retrieve_button_pressed"]
 [connection signal="pressed" from="ModelButton" to="." method="_on_model_button_pressed"]
 [connection signal="file_selected" from="ModelChooser" to="." method="_on_model_chooser_file_selected"]
+[connection signal="pressed" from="ExecuteButton" to="." method="_on_execute_button_pressed"]

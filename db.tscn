@@ -157,7 +157,7 @@ offset_bottom = 418.0
 theme_override_font_sizes/font_size = 32
 text = "Execute"
 
-[connection signal="retrieve_similar_text_finished" from="LlmDB" to="." method="_on_llm_db_retrieve_similar_text_finished"]
+[connection signal="retrieve_similar_texts_finished" from="LlmDB" to="." method="_on_llm_db_retrieve_similar_texts_finished"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MetaButton" to="." method="_on_meta_button_pressed"]
 [connection signal="pressed" from="CreateTableButton" to="." method="_on_create_table_button_pressed"]

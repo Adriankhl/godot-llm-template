@@ -60,7 +60,7 @@ func _on_store_text_by_id_button_pressed():
 	$LlmDB.run_store_text_by_id("Document2023", $Document.text)
 
 
-func _on_llm_db_retrieve_similar_text_finished(array):
+func _on_llm_db_retrieve_similar_texts_finished(array):
 	$Output.text = ""
 	for s in array:
 		$Output.text += s + "\n\n"

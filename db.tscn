@@ -52,12 +52,12 @@ grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_m03tj")
 
 [node name="MetaButton" type="Button" parent="."]
-offset_left = 76.0
-offset_top = 49.0
-offset_right = 237.0
-offset_bottom = 80.0
+offset_left = 155.0
+offset_top = 48.0
+offset_right = 445.0
+offset_bottom = 101.0
 theme_override_font_sizes/font_size = 32
-text = "Meta data schema: id, year"
+text = "Metadata: id, year"
 
 [node name="CreateTableButton" type="Button" parent="."]
 offset_left = 69.0

@@ -39,7 +39,7 @@ func _on_drop_table_button_pressed():
 
 func _on_split_text_button_pressed():
 	var array = $LlmDB.split_text($Document.text)
-	$Output.clear()
+	$Output.text = ""
 	for s in array:
 		$Output.text += s + "\n\n"
 
@@ -67,7 +67,6 @@ func _on_llm_db_retrieve_similar_texts_finished(array):
 
 
 func _on_back_button_pressed():
-	$Llama.stop_generate_text()
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
@@ -82,4 +81,3 @@ func _on_model_chooser_file_selected(path):
 
 func _on_execute_button_pressed():
 	$LlmDB.execute($Prompt.text)
-	print($LlmDB.has_id("Document2022", "llm_table_meta"))

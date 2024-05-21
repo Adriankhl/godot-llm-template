@@ -10,6 +10,9 @@ A template/demo to show how to use the [godot-llm](https://github.com/Adriankhl/
 ## Image to text
 ![](./media/demo-image-to-text.gif)
 
+## Vector database
+![](./media/demo-vector-database.gif)
+
 # How to use
 You may simply download the Android apk in the release page to try it out for Android devices.
 
@@ -21,7 +24,7 @@ For Windows/Linux:
 
 ## Download models
 * Text generation recommendation: [Meta-Llama-3-8B-Instruct-Q5_K_M.gguf](https://huggingface.co/lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF/tree/main) or [Phi-3-mini-4k-instruct-Q2_K.gguf](https://huggingface.co/bartowski/Phi-3-mini-4k-instruct-GGUF/tree/main) for low-end devices such as Android phone
-* Similarity recommendation: [mxbai-embed-large-v1.Q5_K_M.gguf](https://huggingface.co/ChristianAzinn/mxbai-embed-large-v1-gguf/tree/main)
+* Similarity/Vector database recommendation: [mxbai-embed-large-v1.Q5_K_M.gguf](https://huggingface.co/ChristianAzinn/mxbai-embed-large-v1-gguf/tree/main)
 * Image to text recommendation: [llava-phi-3-mini-int4.gguf](https://huggingface.co/xtuner/llava-phi-3-mini-gguf/tree/main), also download the `llava-phi-3-mini-mmproj-f16.gguf` from the same page
 
 Folder and file structure:
@@ -36,6 +39,8 @@ Folder and file structure:
 │       │   ├── libgodot_llm.windows.debug.amd64.dll
 │       │   └── libgodot_llm.windows.release.amd64.dll
 │       └── godot_llm.gdextension
+├── db.gd
+├── db.tscn
 ├── icon.svg
 ├── icon.svg.import
 ├── image_to_text.gd
@@ -69,7 +74,7 @@ Just edit the prompt and click `Generate`. Click `Stop` to stop the generation.
 
 You choose `None` schema or `Person` schema, if you choose `None` schema, the model will generate the information of a character with Json format.
 
-### `Instruct` mode
+### `Instruct` mode (currently this is disabled)
 Click `Start` first with empty prompt, then modify the prompt and click `Continue` when it is available to talk to the AI. This is an interactive mode. Whenever you see the `Continue` button is available, either input something in the prompt and click `Continue` to send the input, or simply click `Continue` to let the AI talk itself.
 
 ### `Interactive` mode
@@ -80,3 +85,6 @@ Input prompts to compute the `Embedding`, or input two prompts to calculate thei
 
 ## Image to Text
 Select an `Image` from your device. Alternative, click `From View` to capture your game screen as the image. You can `Compute Base64` encoding for your image, or decode a base64 string back to `Compute Image`. Edit the prompt, and generate text from `Image`, `Base64`, or `View` (your game screen).
+
+## Vector Database
+Click `Metadata: id, year` to define the metadata of the tables, then click `Create tables` to create a some tables for embedding storage and retrieval. Click `Store text` to split the document into chunks and store into the database, you may also click `Split text` to see the chunks. Click `Retrieve` to retrive three most similar text chunks with the upper left prompt, which satisfy the sql-where-clause in the middle right. You may also turn on "Verbose stdout", modify the upper prompt to a valid sql statement, and click execute to run the sql statement directly, you will see the result in godot log.

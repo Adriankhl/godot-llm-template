@@ -63,7 +63,7 @@ You can now open the application with Godot
 
 You will see 4 modes: `Text Generation`, `Similarity`, `Image to Text`, and `Vector Database`.
 
-In each mode, you need to clide `Model` to point to the correct model `gguf` file. Addition, in `Image to Text` mode, you need to click `Mmproj` to point to your `*mmproj*gguf` file.
+In each mode, you need to click `Model` to point to the correct model `gguf` file. Addition, in `Image to Text` mode, you need to click `Mmproj` to point to your `*mmproj*gguf` file.
 
 ## Text Generation
 

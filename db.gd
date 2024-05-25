@@ -24,7 +24,7 @@ func _exit_tree():
 
 func _on_meta_button_pressed():
 	$LlmDB.meta = [
-		LlmDBMetaData.create_text("id"),
+		LlmDBMetaData.create("id", LlmDBMetaData.TEXT),
 		LlmDBMetaData.create_int("year")
 	]
 

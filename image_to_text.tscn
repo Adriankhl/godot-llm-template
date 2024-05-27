@@ -26,6 +26,7 @@ script = ExtResource("1_dxk0h")
 model_path = "models/llava-phi-3-mini-int4.gguf"
 mmproj_path = "models/llava-phi-3-mini-mmproj-f16.gguf"
 context_size = 4096
+n_gpu_layer = 33
 
 [node name="ImageButton" type="Button" parent="."]
 offset_left = 32.0

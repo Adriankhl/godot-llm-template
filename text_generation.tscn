@@ -20,7 +20,7 @@ script = ExtResource("1_jujmh")
 [node name="Llama" type="GDLlama" parent="."]
 model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
 n_keep = 128
-n_threads = 1
+n_gpu_layer = 33
 split_mode = 0
 escape = true
 

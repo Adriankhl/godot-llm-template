@@ -144,13 +144,11 @@ func _on_schema_option_item_selected(index):
 		0:
 			$Prompt.text = default_prompt
 			$Llama.should_output_prompt = true
-			$Llama.should_output_bos = true
-			$Llama.should_output_eos = true				
+			$Llama.should_output_special = true
 		1:
 			##Disable all these to get pure json output
 			$Llama.should_output_prompt = false
-			$Llama.should_output_bos = false
-			$Llama.should_output_eos = false
+			$Llama.should_output_special = false
 
 			$Prompt.text = default_prompt_json
 

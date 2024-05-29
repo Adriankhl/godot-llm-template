@@ -9,6 +9,8 @@ func _ready():
 		$MmprojChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 		$ImageChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 		$Llava.n_gpu_layer = 0
+		$Llava.n_threads = 2
+		$Llava.n_batch = 20
 		$Llava.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/mobilevlm_v2-1.7b-q4_k.gguf"
 		$Llava.mmproj_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/mobilevlm_v2-1.7b-q4_k-mmproj.gguf"
 

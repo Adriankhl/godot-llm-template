@@ -37,6 +37,8 @@ func _ready():
 	if (OS.get_name() == "Android"):
 		$Llama.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/phi-3-mini-4k-instruct.Q2_K.gguf"
 		$Llama.n_gpu_layer = 0
+		$Llama.n_threads = 2
+		$Llama.n_batch = 20
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 
 	## Disable the generate button while the thread is running

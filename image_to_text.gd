@@ -9,6 +9,7 @@ func _ready():
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 		$MmprojChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 		$ImageChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+		$Llava.n_gpu_layer = 0
 
 
 func _process(delta):

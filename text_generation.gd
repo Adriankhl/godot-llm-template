@@ -36,6 +36,7 @@ var total_time = 0.0
 func _ready():
 	if (OS.get_name() == "Android"):
 		$Llama.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/current.gguf"
+		$Llama.n_gpu_layer = 0
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 	## Disable the generate button while the thread is running
 	$GenerateButton.disabled = false

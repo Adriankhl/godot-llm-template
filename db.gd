@@ -46,10 +46,7 @@ func _on_split_text_button_pressed():
 
 func _on_store_text_button_pressed():
 	$LlmDB.run_store_text_by_meta({"year": 2024}, $Document.text)
-
-
-func _on_retrieve_button_pressed():
-	$LlmDB.run_retrieve_similar_texts($Prompt.text, $Filter.text, 3)
+	$RetrieveButton.disabled = true
 
 
 func _on_store_text_by_id_button_pressed():
@@ -57,7 +54,11 @@ func _on_store_text_by_id_button_pressed():
 		"id": "Document2023",
 		"year": 2023,
 	})
+	$RetrieveButton.disabled = true
 	$LlmDB.run_store_text_by_id("Document2023", $Document.text)
+
+func _on_retrieve_button_pressed():
+	$LlmDB.run_retrieve_similar_texts($Prompt.text, $Filter.text, 3)
 
 
 func _on_llm_db_retrieve_similar_texts_finished(array):
@@ -81,3 +82,7 @@ func _on_model_chooser_file_selected(path):
 
 func _on_execute_button_pressed():
 	$LlmDB.execute($Prompt.text)
+
+
+func _on_llm_db_store_text_finished():
+	$RetrieveButton.disabled = false

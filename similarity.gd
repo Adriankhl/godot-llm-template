@@ -7,9 +7,11 @@ var right_array: PackedFloat32Array = []
 var total_time = 0.0
 
 func _ready():
-	$ModelPathLabel.text = $Embedding.model_path
 	if (OS.get_name() == "Android"):
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+		$Embedding.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/all-MiniLM-L6-v2-Q5_K_M.gguf"
+
+	$ModelPathLabel.text = $Embedding.model_path
 
 
 func _process(delta):

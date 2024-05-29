@@ -3,13 +3,17 @@ extends Node
 var total_time = 0.0
 
 func _ready():
-	$ModelPathLabel.text = $Llava.model_path
-	$MmprojPathLabel.text = $Llava.mmproj_path
+
 	if (OS.get_name() == "Android"):
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 		$MmprojChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 		$ImageChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 		$Llava.n_gpu_layer = 0
+		$Llava.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/mobilevlm_v2-1.7b-q4_k.gguf"
+		$Llava.mmproj_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/mobilevlm_v2-1.7b-q4_k-mmproj.gguf"
+
+	$ModelPathLabel.text = $Llava.model_path
+	$MmprojPathLabel.text = $Llava.mmproj_path
 
 
 func _process(delta):

@@ -11,11 +11,13 @@ Linux (/ˈlɪnʊks/ LIN-uuks)[11] is a family of open-source Unix-like operating
 "
 
 func _ready():
-	$Document.text = default_document
-	$ModelPathLabel.text = $LlmDB.model_path
 	if (OS.get_name() == "Android"):
 		$LlmDB.db_dir = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/models"
 		$ModelChooser.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
+		$LlmDB.model_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + "models/all-MiniLM-L6-v2-Q5_K_M.gguf"
+
+	$Document.text = default_document
+	$ModelPathLabel.text = $LlmDB.model_path
 	$LlmDB.open_db()
 
 func _exit_tree():

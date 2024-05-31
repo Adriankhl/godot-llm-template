@@ -74,7 +74,7 @@ Just edit the prompt and click `Generate`. Click `Stop` to stop the generation.
 
 You choose `None` schema or `Person` schema, if you choose `None` schema, the model will generate the information of a character with Json format.
 
-### `Instruct` mode (currently this is disabled)
+### `Instruct` mode
 Click `Start` first with empty prompt, then modify the prompt and click `Continue` when it is available to talk to the AI. This is an interactive mode. Whenever you see the `Continue` button is available, either input something in the prompt and click `Continue` to send the input, or simply click `Continue` to let the AI talk itself.
 
 ### `Interactive` mode

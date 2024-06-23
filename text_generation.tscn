@@ -21,7 +21,6 @@ script = ExtResource("1_jujmh")
 model_path = "models/Meta-Llama-3-8B-Instruct.Q5_K_M.gguf"
 n_keep = 128
 n_gpu_layer = 33
-escape = true
 
 [node name="Prompt" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(1000, 300)

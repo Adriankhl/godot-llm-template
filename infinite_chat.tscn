@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxsppwk5pgnjl"]
+
+[ext_resource type="Script" path="res://infinite_chat.gd" id="1_5b028"]
+
+[sub_resource type="LlmDBMetaData" id="LlmDBMetaData_ff0bt"]
+data_name = "id"
+data_type = 2
+
+[node name="InfiniteChat" type="Node"]
+script = ExtResource("1_5b028")
+
+[node name="GDLlama" type="GDLlama" parent="."]
+model_path = "models/phi-3-mini-4k-instruct-q4_k_m.gguf"
+escape = true
+
+[node name="LlmDB" type="LlmDB" parent="."]
+meta = Array[LlmDBMetaData]([SubResource("LlmDBMetaData_ff0bt")])
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 537.0
+offset_top = 229.0
+offset_right = 622.0
+offset_bottom = 282.0
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[connection signal="generate_text_finished" from="GDLlama" to="." method="_on_gd_llama_generate_text_finished"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
